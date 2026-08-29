@@ -1,0 +1,26 @@
+{
+  "name": "Discord",
+  "identifier": "com.arad00ak.discord-source",
+  "subtitle": "Discord App Store builds for sideloading.",
+  "description": "An unofficial source for decrypted Discord App Store builds. This project does not add tweaks or other modifications.",
+  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e9/54/bf/e954bfcc-dbe3-7531-99d9-1696ab804e46/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+  "website": "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
+  "tintColor": "5865F2",
+  "apps": [
+    {
+      "name": "Discord",
+      "bundleIdentifier": "com.hammerandchisel.discord",
+      "developerName": "Discord Inc.",
+      "subtitle": "The standard Discord app with no tweaks added.",
+      "localizedDescription": "A decrypted Discord App Store build for sideloading. This source is unofficial and is not affiliated with Discord Inc.",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e9/54/bf/e954bfcc-dbe3-7531-99d9-1696ab804e46/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+      "tintColor": "5865F2",
+      "category": "social",
+      "versions": [],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
+    }
+  ]
+}

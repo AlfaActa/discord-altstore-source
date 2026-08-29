@@ -1,0 +1,76 @@
+name: Update source
+
+on:
+  schedule:
+    - cron: "17 4 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discord-source-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - run: python -m pip install --requirement requirements.txt
+
+      - name: Download and prepare source update
+        id: update
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+          EEVEE_BOT_ID: ${{ vars.EEVEE_BOT_ID }}
+        run: python updater.py update "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746"
+
+      - name: Publish IPA release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.update.outputs.tag }}
+          ASSET_PATH: ${{ steps.update.outputs.asset_path }}
+          ASSET_NAME: ${{ steps.update.outputs.asset_name }}
+          VERSION: ${{ steps.update.outputs.version }}
+          BUILD: ${{ steps.update.outputs.build }}
+          SHA256: ${{ steps.update.outputs.sha256 }}
+        shell: bash
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            remote_digest=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" \
+              --jq ".assets[] | select(.name == \"$ASSET_NAME\") | .digest")
+            if [ -z "$remote_digest" ] || [ "$remote_digest" = "null" ]; then
+              gh release upload "$TAG" "$ASSET_PATH"
+            elif [ "$remote_digest" != "sha256:$SHA256" ]; then
+              echo "Existing release asset checksum does not match." >&2
+              exit 1
+            fi
+          else
+            gh release create "$TAG" "$ASSET_PATH" \
+              --title "Discord $VERSION ($BUILD)" \
+              --notes "Decrypted App Store build. This project adds no tweaks. SHA-256: $SHA256"
+          fi
+
+      - name: Commit source update
+        if: steps.update.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.update.outputs.version }}
+          BUILD: ${{ steps.update.outputs.build }}
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add source.json
+          git commit -m "chore(source): add Discord $VERSION ($BUILD)"
+          git push
