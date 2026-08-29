@@ -3,8 +3,8 @@ name: Schedule source update
 on:
   schedule:
     # GitHub cron has no random operator. This lightweight check selects one
-    # pseudorandom 15-minute slot from Wednesday through Friday each week.
-    - cron: "*/15 * * * 3-5"
+    # pseudorandom 15-minute slot on Friday each week.
+    - cron: "*/15 * * * 5"
   workflow_dispatch:
     inputs:
       force:
@@ -37,15 +37,13 @@ jobs:
 
           week=$(date -u +%G-%V)
           seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
-          target_day=$((3 + (16#${seed:0:8} % 3)))
-          target_slot=$((16#${seed:8:8} % 96))
-          current_day=$(date -u +%u)
+          target_slot=$((16#${seed:0:8} % 96))
           hour=$(date -u +%H)
           minute=$(date -u +%M)
           current_slot=$((10#$hour * 4 + 10#$minute / 15))
 
           if [ "$FORCE" = "true" ] || {
-            [ "$current_day" -eq "$target_day" ] && [ "$current_slot" -eq "$target_slot" ];
+            [ "$current_slot" -eq "$target_slot" ];
           }; then
             gh workflow run update-source.yml --repo "$GITHUB_REPOSITORY" --ref main
             echo "Dispatched the updater for ISO week $week."
