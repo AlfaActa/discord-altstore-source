@@ -28,7 +28,7 @@ from typing import Any
 APP_STORE_ID = "985746746"
 BOT_USERNAME = "eeveedecrypterbot"
 BUNDLE_ID = "com.hammerandchisel.discord"
-DEFAULT_REPOSITORY = "Arad00ak/discord-altstore-source"
+DEFAULT_REPOSITORY = "AlfaActa/discord-altstore-source"
 MAX_IPA_SIZE = 2 * 1024**3
 MAX_PLIST_SIZE = 4 * 1024**2
 TELEGRAM_TIMEOUT_SECONDS = 45 * 60

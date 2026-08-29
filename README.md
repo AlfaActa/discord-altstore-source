@@ -9,7 +9,7 @@ The source works with KSign and AltStore Classic. It does not work with AltStore
 Add this URL to KSign or AltStore Classic:
 
 ```text
-https://raw.githubusercontent.com/Arad00ak/discord-altstore-source/main/source.json
+https://raw.githubusercontent.com/AlfaActa/discord-altstore-source/main/source.json
 ```
 
 The source stays empty until the first successful update publishes an IPA release.
@@ -37,7 +37,7 @@ Use a dedicated Telegram account. A Telegram session grants full access to that 
 5. Start the first update:
 
    ```powershell
-   gh workflow run update-source.yml --repo Arad00ak/discord-altstore-source
+   gh workflow run update-source.yml --repo AlfaActa/discord-altstore-source
    ```
 
 The workflow checks every Tuesday at 04:17 UTC. GitHub may delay scheduled jobs. It also disables scheduled workflows in public repositories after 60 days without repository activity, so re-enable the workflow if Discord goes that long without a published update.
