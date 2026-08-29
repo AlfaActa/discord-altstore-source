@@ -144,8 +144,6 @@ def inspect_ipa(path: Path) -> IpaMetadata:
                 for entry in entries
                 if entry.filename.startswith(app_root) and entry.filename.endswith("embedded.mobileprovision")
             ]
-            if not profile_entries:
-                raise UpdateError("IPA has no embedded provisioning profile for AltStore permissions")
             entitlements: set[str] = set()
             for entry in profile_entries:
                 if entry.file_size > MAX_PLIST_SIZE:

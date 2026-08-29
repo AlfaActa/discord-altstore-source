@@ -18,7 +18,14 @@ class UpdaterTests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
 
-    def make_ipa(self, name="Discord", bundle=updater.BUNDLE_ID, version="342.0", build="70001"):
+    def make_ipa(
+        self,
+        name="Discord",
+        bundle=updater.BUNDLE_ID,
+        version="342.0",
+        build="70001",
+        profile=True,
+    ):
         path = self.root / f"{name}.ipa"
         info = {
             "CFBundleIdentifier": bundle,
@@ -30,19 +37,20 @@ class UpdaterTests(unittest.TestCase):
         with zipfile.ZipFile(path, "w") as archive:
             archive.writestr(f"Payload/{name}.app/Info.plist", plistlib.dumps(info, fmt=plistlib.FMT_BINARY))
             archive.writestr(f"Payload/{name}.app/{name}", b"binary")
-            archive.writestr(
-                f"Payload/{name}.app/embedded.mobileprovision",
-                plistlib.dumps(
-                    {
-                        "Entitlements": {
-                            "application-identifier": "TEAM.bundle",
-                            "com.apple.developer.team-identifier": "TEAM",
-                            "aps-environment": "production",
-                        }
-                    },
-                    fmt=plistlib.FMT_XML,
-                ),
-            )
+            if profile:
+                archive.writestr(
+                    f"Payload/{name}.app/embedded.mobileprovision",
+                    plistlib.dumps(
+                        {
+                            "Entitlements": {
+                                "application-identifier": "TEAM.bundle",
+                                "com.apple.developer.team-identifier": "TEAM",
+                                "aps-environment": "production",
+                            }
+                        },
+                        fmt=plistlib.FMT_XML,
+                    ),
+                )
         return path
 
     def make_source(self):
@@ -59,6 +67,10 @@ class UpdaterTests(unittest.TestCase):
         self.assertEqual(len(metadata.sha256), 64)
         self.assertEqual(metadata.entitlements, ("aps-environment",))
         self.assertEqual(metadata.privacy["NSCameraUsageDescription"], "Discord uses the camera for video calls.")
+
+    def test_accepts_app_store_ipa_without_provisioning_profile(self):
+        metadata = updater.inspect_ipa(self.make_ipa(profile=False))
+        self.assertEqual(metadata.entitlements, ())
 
     def test_rejects_wrong_bundle_and_multiple_apps(self):
         with self.assertRaises(updater.UpdateError):

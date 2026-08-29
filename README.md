@@ -64,6 +64,6 @@ python -m unittest -v
 
 ## Trust and legal notice
 
-The updater verifies the bundle identifier, version, build number, archive paths, provisioning-profile permissions, size, and SHA-256 checksum. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
+The updater verifies the bundle identifier, version, build number, archive paths, any embedded provisioning-profile permissions, size, and SHA-256 checksum. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
 
 This project is not affiliated with Discord Inc., Apple Inc., or Eevee IPA Decrypter. Discord and its assets belong to their respective owners. Public release assets may be removed after a copyright complaint.
