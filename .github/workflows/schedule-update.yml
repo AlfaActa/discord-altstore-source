@@ -1,0 +1,54 @@
+name: Schedule source update
+
+on:
+  schedule:
+    # GitHub cron has no random operator. This lightweight check selects one
+    # pseudorandom 15-minute slot from Wednesday through Friday each week.
+    - cron: "*/15 * * * 3-5"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Dispatch the updater immediately for a scheduler test
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  actions: write
+
+concurrency:
+  group: discord-source-scheduler
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Select weekly slot
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ inputs.force }}
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ "$FORCE" != "true" ]; then
+            echo "Manual scheduler check complete. Use force=true to dispatch the updater."
+            exit 0
+          fi
+
+          week=$(date -u +%G-%V)
+          seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
+          target_day=$((3 + (16#${seed:0:8} % 3)))
+          target_slot=$((16#${seed:8:8} % 96))
+          current_day=$(date -u +%u)
+          hour=$(date -u +%H)
+          minute=$(date -u +%M)
+          current_slot=$((10#$hour * 4 + 10#$minute / 15))
+
+          if [ "$FORCE" = "true" ] || {
+            [ "$current_day" -eq "$target_day" ] && [ "$current_slot" -eq "$target_slot" ];
+          }; then
+            gh workflow run update-source.yml --repo "$GITHUB_REPOSITORY" --ref main
+            echo "Dispatched the updater for ISO week $week."
+          else
+            echo "No dispatch for ISO week $week."
+          fi

@@ -1,10 +1,6 @@
 name: Update source
 
 on:
-  schedule:
-    # Replaced by the workflow after each scheduled run. This is the first
-    # pseudorandom slot for the next ISO week.
-    - cron: "32 19 * * 5"
   workflow_dispatch:
 
 permissions:
@@ -81,24 +77,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add source.json
           git commit -m "chore(source): add Discord $VERSION ($BUILD)"
-          git push
-
-      - name: Schedule next weekly slot
-        if: always() && github.event_name == 'schedule'
-        shell: bash
-        run: |
-          week=$(date -u -d 'next week' +%G-%V)
-          seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
-          target_day=$((3 + (16#${seed:0:8} % 3)))
-          target_hour=$((16#${seed:8:4} % 24))
-          target_minute=$((16#${seed:12:4} % 60))
-          next_cron="$target_minute $target_hour * * $target_day"
-          sed -i -E "s|^    - cron: \".*\"$|    - cron: \"$next_cron\"|" .github/workflows/update-source.yml
-          if git diff --quiet -- .github/workflows/update-source.yml; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/workflows/update-source.yml
-          git commit -m "chore(schedule): set next update slot"
           git push
