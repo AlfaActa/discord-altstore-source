@@ -8,7 +8,7 @@
   "tintColor": "5865F2",
   "apps": [
     {
-      "name": "Discord",
+      "name": "Discord - Talk, Play, Hang Out",
       "bundleIdentifier": "com.hammerandchisel.discord",
       "developerName": "Discord Inc.",
       "subtitle": "The standard Discord app with no tweaks added.",
@@ -16,11 +16,40 @@
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e9/54/bf/e954bfcc-dbe3-7531-99d9-1696ab804e46/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
       "tintColor": "5865F2",
       "category": "social",
-      "versions": [],
+      "versions": [
+        {
+          "version": "342.0",
+          "buildVersion": "108502",
+          "date": "2026-08-24T18:41:40Z",
+          "localizedDescription": "Decrypted App Store build. This project adds no tweaks.",
+          "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v342.0-b108502/Discord_342.0_108502.ipa",
+          "size": 115584031,
+          "sha256": "209e0b07793b976253e78073144b65cf534e937e8a27becd946ac5423349bc4a",
+          "minOSVersion": "16.0"
+        }
+      ],
       "appPermissions": {
         "entitlements": [],
-        "privacy": {}
-      }
+        "privacy": {
+          "NSBluetoothAlwaysUsageDescription": "To connect to your devices",
+          "NSBluetoothPeripheralUsageDescription": "To connect to your devices",
+          "NSCameraUsageDescription": "By allowing access to your camera, you can take pictures and others will be able to see you in voice and video calls.",
+          "NSContactsUsageDescription": "We can help you find people you know on Discord. Your contacts will be regularly sent to us so you can connect with friends. You can turn this off any time.",
+          "NSLocalNetworkUsageDescription": "Allow Discord access to your local network to find devices using the same internet connection.",
+          "NSLocationAlwaysAndWhenInUseUsageDescription": "To enable services that require location",
+          "NSLocationAlwaysUsageDescription": "To enable services that require location",
+          "NSLocationWhenInUseUsageDescription": "To enable services that require location",
+          "NSMicrophoneUsageDescription": "By allowing access to your microphone, you'll be able to talk in calls.",
+          "NSPhotoLibraryAddUsageDescription": "By allowing access to your library, you'll be able to download photos and videos.",
+          "NSPhotoLibraryUsageDescription": "By allowing us access to your photos, you will be able to upload images as an avatar, server icon, and more, and you can send photos and videos to your friends and communities.",
+          "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
+        }
+      },
+      "version": "342.0",
+      "versionDate": "2026-08-24T18:41:40Z",
+      "size": 115584031,
+      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v342.0-b108502/Discord_342.0_108502.ipa",
+      "minOSVersion": "16.0"
     }
   ]
 }
