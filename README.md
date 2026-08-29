@@ -48,7 +48,7 @@ Use a dedicated Telegram account. A Telegram session grants full access to that 
    gh workflow run update-source.yml --repo AlfaActa/discord-altstore-source
    ```
 
-The workflow wakes every 15 minutes from Wednesday through Friday and runs one pseudorandom 15-minute slot selected for that ISO week. Manual dispatch runs immediately. GitHub may delay scheduled jobs. It also disables scheduled workflows in public repositories after 60 days without repository activity, so re-enable the workflow if Discord goes that long without a published update.
+The workflow keeps one cron entry for the next weekly update. After each scheduled run, it chooses one pseudorandom day from Wednesday through Friday and one pseudorandom UTC minute for the following ISO week, then commits that single cron entry. It does not run on the other two days. Manual dispatch runs immediately. GitHub may delay scheduled jobs. It also disables scheduled workflows in public repositories after 60 days without repository activity, so re-enable the workflow if Discord goes that long without a published update.
 
 ## Run locally
 

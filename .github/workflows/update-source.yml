@@ -2,9 +2,9 @@ name: Update source
 
 on:
   schedule:
-    # GitHub cron has no random operator. Wake every 15 minutes and run one
-    # deterministic slot selected from Wednesday through Friday each week.
-    - cron: "*/15 * * * 3-5"
+    # Replaced by the workflow after each scheduled run. This is the first
+    # pseudorandom slot for the next ISO week.
+    - cron: "32 19 * * 5"
   workflow_dispatch:
 
 permissions:
@@ -20,45 +20,17 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Select weekly slot
-        id: slot
-        shell: bash
-        run: |
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          week=$(date -u +%G-%V)
-          seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
-          target_day=$((3 + (16#${seed:0:8} % 3)))
-          target_slot=$((16#${seed:8:8} % 96))
-          current_day=$(date -u +%u)
-          hour=$(date -u +%H)
-          minute=$(date -u +%M)
-          current_slot=$((10#$hour * 4 + 10#$minute / 15))
-
-          if [ "$current_day" -eq "$target_day" ] && [ "$current_slot" -eq "$target_slot" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - uses: actions/checkout@v4
-        if: steps.slot.outputs.run == 'true'
 
       - uses: actions/setup-python@v5
-        if: steps.slot.outputs.run == 'true'
         with:
           python-version: "3.13"
           cache: pip
 
       - run: python -m pip install --disable-pip-version-check --requirement requirements.txt
-        if: steps.slot.outputs.run == 'true'
 
       - name: Download and prepare source update
         id: update
-        if: steps.slot.outputs.run == 'true'
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
           TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
@@ -67,7 +39,6 @@ jobs:
         run: python updater.py update "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746"
 
       - name: Publish IPA release
-        if: steps.slot.outputs.run == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.update.outputs.tag }}
@@ -110,4 +81,24 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add source.json
           git commit -m "chore(source): add Discord $VERSION ($BUILD)"
+          git push
+
+      - name: Schedule next weekly slot
+        if: always() && github.event_name == 'schedule'
+        shell: bash
+        run: |
+          week=$(date -u -d 'next week' +%G-%V)
+          seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
+          target_day=$((3 + (16#${seed:0:8} % 3)))
+          target_hour=$((16#${seed:8:4} % 24))
+          target_minute=$((16#${seed:12:4} % 60))
+          next_cron="$target_minute $target_hour * * $target_day"
+          sed -i -E "s|^    - cron: \".*\"$|    - cron: \"$next_cron\"|" .github/workflows/update-source.yml
+          if git diff --quiet -- .github/workflows/update-source.yml; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/update-source.yml
+          git commit -m "chore(schedule): set next update slot"
           git push
