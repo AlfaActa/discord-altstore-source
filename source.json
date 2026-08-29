@@ -21,7 +21,7 @@
           "version": "342.0",
           "buildVersion": "108502",
           "date": "2026-08-24T18:41:40Z",
-          "localizedDescription": "Decrypted App Store build. This project adds no tweaks.",
+          "localizedDescription": "Voice calls now show up as a Live Activity, letting you see your friends’ beautiful avatars and the icon for the server or Group DM you’re in. You can also access Discord’s Mute and Deafen buttons directly from your Lock Screen and Dynamic Island. \n\nThere are a LOT of small-but-meaningful fixes across iOS this month, such as VoiceOver improvements, smoother Forum channels, and less chunky scrolling. Grab a warm cup of coffee/tea/whatever tasty drink you prefer, open up dis.gd/PatchNotes, and spend an evening reading all of them. One… by… one…",
           "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v342.0-b108502/Discord_342.0_108502.ipa",
           "size": 115584031,
           "sha256": "209e0b07793b976253e78073144b65cf534e937e8a27becd946ac5423349bc4a",
@@ -29,7 +29,17 @@
         }
       ],
       "appPermissions": {
-        "entitlements": [],
+        "entitlements": [
+          "aps-environment",
+          "com.apple.developer.associated-domains",
+          "com.apple.developer.avfoundation.multitasking-camera-access",
+          "com.apple.developer.declared-age-range",
+          "com.apple.developer.kernel.increased-memory-limit",
+          "com.apple.developer.networking.carrier-constrained.appcategory",
+          "com.apple.developer.storekit.request-data",
+          "com.apple.developer.usernotifications.communication",
+          "com.apple.security.application-groups"
+        ],
         "privacy": {
           "NSBluetoothAlwaysUsageDescription": "To connect to your devices",
           "NSBluetoothPeripheralUsageDescription": "To connect to your devices",
@@ -49,7 +59,78 @@
       "versionDate": "2026-08-24T18:41:40Z",
       "size": 115584031,
       "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v342.0-b108502/Discord_342.0_108502.ipa",
-      "minOSVersion": "16.0"
+      "minOSVersion": "16.0",
+      "screenshots": {
+        "iphone": [
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/24/4c/42/244c42b9-0433-6108-6801-d3163d22c4cc/86d98c10-0014-4bcb-89a5-39c7776e014e_1_GroupChat_Tile_EN_5-5.png/392x696bb.png",
+            "width": 392,
+            "height": 696
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/63/78/09/637809c2-08ec-3525-6deb-81bc8cfa258d/5cc22caa-9cad-409f-9de8-f852cabe5d08_2_Stream_Tile_EN_5-5.png/392x696bb.png",
+            "width": 392,
+            "height": 696
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/c6/01/7bc601c6-3616-ee25-7344-47a422a76729/4440dc86-9288-47c3-afe2-cd9b804c8700_3_SeeWhos_Tile_EN_5-5.png/392x696bb.png",
+            "width": 392,
+            "height": 696
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/e9/a8/5de9a80f-f644-5b14-cb4d-e6a9e6f3dc55/ee397381-34db-4de9-a43f-d4ab27989e36_4_HopIn_Tile_EN_5-5.png/392x696bb.png",
+            "width": 392,
+            "height": 696
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e5/4c/de/e54cde6f-01ae-6a35-17b8-b4bc3b3dee08/5e8db952-8709-48b5-abd9-c026ef82f629_5_ToDo_Tile_EN_5-5.png/392x696bb.png",
+            "width": 392,
+            "height": 696
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/29/53/b6/2953b6e5-3b04-bcfe-839d-9b3bea691374/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_1242x2208_EN.png/392x696bb.png",
+            "width": 392,
+            "height": 696
+          }
+        ],
+        "ipad": [
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8b/31/58/8b31585c-071d-e6f5-ac55-094f6970e935/7de07cce-ee28-4229-b929-1b100151249c_1_GroupChat_Tablet_2732x2048.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d6/da/b6/d6dab621-d40f-242f-08dd-fb31c27bb027/343cc940-75f3-4ee8-a2bc-b99730a835f3_2_Stream_Tablet_2732x2048.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/70/a7/a5/70a7a5ca-742f-40c4-fb60-f2a90e921ca7/03d4cebb-3839-4fe2-b6c5-478c14febe67_3_SeeWhos_Tablet_2732x2048.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/38/f4/b838f4dd-1d30-b6d3-3291-c40337948e88/c60bd074-56ff-417f-9518-f3722d65fb8e_4_HopIn_Tablet_2732x2048.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f3/b2/e5/f3b2e585-b280-ced0-9f67-a2fcdcaa498a/3dc018e2-08f8-40e6-a1f2-9b2c5645011f_5_ToDo_Tablet_2732x2048.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/c1/42/39c14273-0d40-81b6-d8e7-1b2d486b7fa4/adbd4d2f-3254-439a-b8f3-fdaeb015172d_6_GameHere_Tablet_2732x2048.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          },
+          {
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e1/a6/f3/e1a6f308-6a0f-790c-9937-ca3065d89bf4/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_2732x2048_EN.png/552x414bb.png",
+            "width": 552,
+            "height": 414
+          }
+        ]
+      }
     }
   ]
 }
