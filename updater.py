@@ -382,6 +382,22 @@ def _apple_screenshots(apple: dict[str, Any]) -> dict[str, list[dict[str, Any]]]
     return screenshots
 
 
+def _apple_header_url(apple: dict[str, Any]) -> str:
+    for key in ("ipadScreenshotUrls", "screenshotUrls"):
+        values = apple.get(key)
+        if not isinstance(values, (list, tuple)):
+            continue
+        for value in reversed(values):
+            if isinstance(value, str) and value.startswith("https://") and any(
+                marker in value.casefold() for marker in ("hero", "banner")
+            ):
+                return value
+        for value in reversed(values):
+            if isinstance(value, str) and value.startswith("https://"):
+                return value
+    return ""
+
+
 def _clean_release_notes(value: Any) -> str:
     if not isinstance(value, str):
         return ""
@@ -481,6 +497,10 @@ def update_source(
     if screenshots:
         changed = changed or app.get("screenshots") != screenshots
         app["screenshots"] = screenshots
+    header_url = _apple_header_url(apple)
+    if header_url:
+        changed = changed or source.get("headerURL") != header_url
+        source["headerURL"] = header_url
 
     permissions = {
         "entitlements": list(metadata.entitlements),

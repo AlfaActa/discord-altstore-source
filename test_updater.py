@@ -155,12 +155,17 @@ class UpdaterTests(unittest.TestCase):
             "version": "342.0",
             "releaseNotes": "New voice features.\n\nSmaller fixes.",
             "screenshotUrls": ["https://example.com/392x696bb.png"],
-            "ipadScreenshotUrls": ["https://example.com/552x414bb.png"],
+            "ipadScreenshotUrls": [
+                "https://example.com/552x414bb.png",
+                "https://example.com/Discord_Hero_Image_552x414bb.png",
+            ],
         }
         updater.update_source(source, metadata, "https://example.com/342.ipa", apple)
-        app = json.loads(source.read_text(encoding="utf-8"))["apps"][0]
+        document = json.loads(source.read_text(encoding="utf-8"))
+        app = document["apps"][0]
         self.assertEqual(app["screenshots"]["iphone"][0]["width"], 392)
         self.assertEqual(app["screenshots"]["ipad"][0]["height"], 414)
+        self.assertEqual(document["headerURL"], apple["ipadScreenshotUrls"][1])
         self.assertEqual(app["versions"][0]["localizedDescription"], apple["releaseNotes"])
 
     def test_uses_previous_release_notes_when_app_store_has_none(self):

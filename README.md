@@ -1,16 +1,21 @@
-# Discord AltStore source
+# Discord AltStore Source
 
-[![Update source](https://img.shields.io/github/actions/workflow/status/AlfaActa/discord-altstore-source/update-source.yml?style=flat-square&label=update%20source&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/actions/workflows/update-source.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-5865F2?style=flat-square)](LICENSE) [![Discord versions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&query=%24.apps%5B0%5D.versions.length&label=Discord%20versions&color=5865F2&style=flat-square)](source.json) [![Downloads](https://img.shields.io/github/downloads/AlfaActa/discord-altstore-source/total?style=flat-square&logo=github&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/releases)
+[![Update Source](https://img.shields.io/github/actions/workflow/status/AlfaActa/discord-altstore-source/update-source.yml?style=flat-square&label=Update%20Source&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/actions/workflows/update-source.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-5865F2?style=flat-square)](LICENSE) [![Discord Versions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&query=%24.apps%5B0%5D.versions.length&label=Discord%20Versions&color=5865F2&style=flat-square)](source.json) [![Downloads](https://img.shields.io/github/downloads/AlfaActa/discord-altstore-source/total?style=flat-square&logo=github&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/releases) [![Last Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&query=%24.apps%5B0%5D.versions%5B0%5D.version&label=Last%20Version&color=5865F2&style=flat-square)](source.json) [![Last Release Date](https://img.shields.io/github/release-date/AlfaActa/discord-altstore-source?style=flat-square&label=Last%20Release%20Date&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/releases) [![Stars](https://img.shields.io/github/stars/AlfaActa/discord-altstore-source?style=flat-square&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/stargazers)
 
-[![Last version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&query=%24.apps%5B0%5D.versions%5B0%5D.version&label=last%20version&color=5865F2&style=flat-square)](source.json) [![Last release](https://img.shields.io/github/release-date/AlfaActa/discord-altstore-source?style=flat-square&label=last%20release&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/releases) [![Stars](https://img.shields.io/github/stars/AlfaActa/discord-altstore-source?style=flat-square&color=5865F2)](https://github.com/AlfaActa/discord-altstore-source/stargazers)
+<p align="center">
+  <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e9/54/bf/e954bfcc-dbe3-7531-99d9-1696ab804e46/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg" alt="Discord logo" width="96">
+  </a>
+</p>
+<p align="center">
+  <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e1/a6/f3/e1a6f308-6a0f-790c-9937-ca3065d89bf4/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_2732x2048_EN.png/552x414bb.png" alt="Discord App Store banner" width="720">
+</p>
 
 This repository publishes an unofficial AltSource feed for the standard Discord App Store build. The updater asks [Eevee IPA Decrypter](https://t.me/eeveedecrypterbot) for the latest decrypted IPA and does not inject tweaks or make other changes.
 
 The source works with KSign and AltStore Classic. It does not work with AltStore PAL, which requires Apple-notarized alternative distribution packages.
 
 The feed uses the standard AltSource format. It may also be useful to people searching for Discord with SideStore, Scarlet, ESign, Feather, GBox, Sideloadly, or TrollStore, although those apps are not tested here.
-
-The current Discord IPA is a universal build for iPhone and iPad, so the same source works on iOS and iPadOS. The feed keeps separate App Store screenshot sets for both device families. Installation still depends on the signing app and the minimum OS version listed in each release.
 
 ## Source URL
 
@@ -72,6 +77,6 @@ python -m unittest -v
 
 ## Trust and legal notice
 
-The updater verifies the bundle identifier, version, build number, archive paths, size, and SHA-256 checksum. It reads entitlements from an embedded provisioning profile when one exists, and from the Mach-O code signatures of the app and its extensions when possible. Each source entry includes the App Store's iPhone and iPad screenshots and its What's New text when Apple provides them. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
+The updater verifies the bundle identifier, version, build number, archive paths, size, and SHA-256 checksum. It reads entitlements from an embedded provisioning profile when one exists, and from the Mach-O code signatures of the app and its extensions when possible. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
 
-This project is not affiliated with Discord Inc., Apple Inc., or Eevee IPA Decrypter. Discord and its assets belong to their respective owners. Public release assets may be removed after a copyright complaint.
+This project is not affiliated with Discord Inc., Apple Inc., or Eevee IPA Decrypter. Discord and its assets belong to their respective owners.
