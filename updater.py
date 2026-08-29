@@ -13,12 +13,14 @@ import plistlib
 import re
 import shutil
 import stat
+import struct
 import subprocess
 import sys
 import time
 import urllib.parse
 import urllib.request
 import zipfile
+import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
@@ -31,7 +33,13 @@ BUNDLE_ID = "com.hammerandchisel.discord"
 DEFAULT_REPOSITORY = "AlfaActa/discord-altstore-source"
 MAX_IPA_SIZE = 2 * 1024**3
 MAX_PLIST_SIZE = 4 * 1024**2
+MAX_ENTITLEMENTS_SCAN_SIZE = 256 * 1024**2
 TELEGRAM_TIMEOUT_SECONDS = 45 * 60
+DEFAULT_RELEASE_NOTES = "Decrypted App Store build. This project adds no tweaks."
+LC_CODE_SIGNATURE = 0x1D
+CSMAGIC_EMBEDDED_SIGNATURE = 0xFADE0CC0
+CSMAGIC_ENTITLEMENTS = 0xFADE7171
+CSSLOT_ENTITLEMENTS = 5
 
 
 class UpdateError(RuntimeError):
@@ -88,6 +96,133 @@ def _profile_entitlements(data: bytes) -> set[str]:
         "com.apple.developer.team-identifier",
     }
     return {key for key in entitlements if isinstance(key, str) and key not in ignored}
+
+
+def _signature_entitlements(data: bytes) -> set[str]:
+    ignored = {
+        "application-identifier",
+        "com.app.developer.team-identifier",
+        "com.apple.developer.team-identifier",
+    }
+    try:
+        if len(data) < 4:
+            return set()
+        magic = struct.unpack_from(">I", data)[0]
+        if magic in (0xCAFEBABE, 0xCAFEBABF, 0xBEBAFECA, 0xBFBAFECA):
+            endian = ">" if magic in (0xCAFEBABE, 0xCAFEBABF) else "<"
+            is_64 = magic in (0xCAFEBABF, 0xBFBAFECA)
+            arch_size = 32 if is_64 else 20
+            count = struct.unpack_from(f"{endian}I", data, 4)[0]
+            slices = []
+            for index in range(count):
+                offset = 8 + index * arch_size
+                if offset + arch_size > len(data):
+                    return set()
+                if is_64:
+                    slice_offset, slice_size = struct.unpack_from(f"{endian}QQ", data, offset + 8)
+                else:
+                    slice_offset, slice_size = struct.unpack_from(f"{endian}II", data, offset + 8)
+                if slice_offset + slice_size > len(data):
+                    return set()
+                slices.append((data[slice_offset : slice_offset + slice_size], None))
+        else:
+            thin = {
+                0xCEFAEDFE: "<",
+                0xCFFAEDFE: "<",
+                0xFEEDFACE: ">",
+                0xFEEDFACF: ">",
+            }
+            endian = thin.get(magic)
+            if endian is None:
+                return set()
+            slices = [(data, endian)]
+
+        result: set[str] = set()
+        for slice_data, slice_endian in slices:
+            if slice_endian is None:
+                if len(slice_data) < 4:
+                    continue
+                slice_magic = struct.unpack_from(">I", slice_data)[0]
+                slice_endian = {
+                    0xCEFAEDFE: "<",
+                    0xCFFAEDFE: "<",
+                    0xFEEDFACE: ">",
+                    0xFEEDFACF: ">",
+                }.get(slice_magic)
+                if slice_endian is None:
+                    continue
+            if len(slice_data) < 28:
+                continue
+            slice_magic = struct.unpack_from(f"{slice_endian}I", slice_data)[0]
+            command_start = 32 if slice_magic in (0xFEEDFACF, 0xCFFAEDFE) else 28
+            ncmds, sizeofcmds = struct.unpack_from(f"{slice_endian}II", slice_data, 16)
+            command_end = command_start + sizeofcmds
+            if command_end > len(slice_data):
+                continue
+            command_offset = command_start
+            for _ in range(ncmds):
+                if command_offset + 8 > command_end:
+                    break
+                command, command_size = struct.unpack_from(f"{slice_endian}II", slice_data, command_offset)
+                if command_size < 8 or command_offset + command_size > command_end:
+                    break
+                if command == LC_CODE_SIGNATURE and command_size >= 16:
+                    signature_offset, signature_size = struct.unpack_from(
+                        f"{slice_endian}II", slice_data, command_offset + 8
+                    )
+                    signature_end = signature_offset + signature_size
+                    if signature_end <= len(slice_data) and signature_size >= 12:
+                        signature = slice_data[signature_offset:signature_end]
+                        signature_magic, signature_length, blob_count = struct.unpack_from(">III", signature)
+                        if signature_magic == CSMAGIC_EMBEDDED_SIGNATURE and 12 <= signature_length <= len(signature):
+                            for blob_index in range(blob_count):
+                                index_offset = 12 + blob_index * 8
+                                if index_offset + 8 > signature_length:
+                                    break
+                                blob_type, blob_offset = struct.unpack_from(">II", signature, index_offset)
+                                if blob_type != CSSLOT_ENTITLEMENTS or blob_offset + 8 > signature_length:
+                                    continue
+                                blob_magic, blob_length = struct.unpack_from(">II", signature, blob_offset)
+                                blob_end = blob_offset + blob_length
+                                if blob_magic != CSMAGIC_ENTITLEMENTS or blob_end > signature_length or blob_length < 8:
+                                    continue
+                                try:
+                                    entitlements = plistlib.loads(signature[blob_offset + 8 : blob_end])
+                                except (plistlib.InvalidFileException, ValueError):
+                                    continue
+                                if isinstance(entitlements, dict):
+                                    result.update(
+                                        key
+                                        for key in entitlements
+                                        if isinstance(key, str) and key not in ignored
+                                    )
+                command_offset += command_size
+        return result
+    except (struct.error, ValueError, OverflowError):
+        return set()
+
+
+def _bundle_executable_entries(archive: zipfile.ZipFile, entries: list[zipfile.ZipInfo]) -> list[zipfile.ZipInfo]:
+    by_name = {entry.filename: entry for entry in entries}
+    executable_entries: list[zipfile.ZipInfo] = []
+    for entry in entries:
+        parts = PurePosixPath(entry.filename).parts
+        if len(parts) < 3 or parts[-1] != "Info.plist" or not parts[-2].endswith((".app", ".appex")):
+            continue
+        if entry.file_size > MAX_PLIST_SIZE:
+            raise UpdateError("Bundle Info.plist is unexpectedly large")
+        try:
+            bundle_info = plistlib.loads(archive.read(entry))
+        except (plistlib.InvalidFileException, ValueError) as exc:
+            raise UpdateError("IPA contains an invalid bundle Info.plist") from exc
+        executable = bundle_info.get("CFBundleExecutable") if isinstance(bundle_info, dict) else None
+        if not isinstance(executable, str) or not executable.strip() or "/" in executable or "\\" in executable:
+            continue
+        root = "/".join(parts[:-1])
+        executable_entry = by_name.get(f"{root}/{executable}")
+        if executable_entry is not None and not executable_entry.is_dir():
+            executable_entries.append(executable_entry)
+    return executable_entries
 
 
 def _sha256(path: Path) -> str:
@@ -149,6 +284,9 @@ def inspect_ipa(path: Path) -> IpaMetadata:
                 if entry.file_size > MAX_PLIST_SIZE:
                     raise UpdateError("Embedded provisioning profile is unexpectedly large")
                 entitlements.update(_profile_entitlements(archive.read(entry)))
+            for entry in _bundle_executable_entries(archive, entries):
+                if entry.file_size <= MAX_ENTITLEMENTS_SCAN_SIZE:
+                    entitlements.update(_signature_entitlements(archive.read(entry)))
     except (zipfile.BadZipFile, plistlib.InvalidFileException, ValueError) as exc:
         raise UpdateError("IPA is not a valid app archive") from exc
 
@@ -215,6 +353,54 @@ def fetch_apple_metadata() -> dict[str, Any]:
         return {}
 
 
+def _screenshot_entries(values: Any, require_dimensions: bool = False) -> list[dict[str, Any]]:
+    if not isinstance(values, (list, tuple)):
+        return []
+    screenshots: list[dict[str, Any]] = []
+    for value in values:
+        if not isinstance(value, str) or not value.startswith("https://"):
+            continue
+        match = re.search(r"/(\d+)x(\d+)[^/]*\.(?:png|jpe?g|webp)(?:$|\?)", value, re.IGNORECASE)
+        if require_dimensions and match is None:
+            continue
+        screenshot: dict[str, Any] = {"imageURL": value}
+        if match:
+            screenshot["width"] = int(match.group(1))
+            screenshot["height"] = int(match.group(2))
+        screenshots.append(screenshot)
+    return screenshots
+
+
+def _apple_screenshots(apple: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    screenshots: dict[str, list[dict[str, Any]]] = {}
+    iphone = _screenshot_entries(apple.get("screenshotUrls"))
+    ipad = _screenshot_entries(apple.get("ipadScreenshotUrls"), require_dimensions=True)
+    if iphone:
+        screenshots["iphone"] = iphone
+    if ipad:
+        screenshots["ipad"] = ipad
+    return screenshots
+
+
+def _clean_release_notes(value: Any) -> str:
+    if not isinstance(value, str):
+        return ""
+    return value.replace("\r\n", "\n").replace("\r", "\n").replace("\0", "").strip()
+
+
+def _release_notes(apple: dict[str, Any], versions: list[Any], version: str) -> str:
+    if apple.get("version") == version:
+        current = _clean_release_notes(apple.get("releaseNotes"))
+        if current:
+            return current
+    for item in versions:
+        if isinstance(item, dict):
+            previous = _clean_release_notes(item.get("localizedDescription"))
+            if previous:
+                return previous
+    return DEFAULT_RELEASE_NOTES
+
+
 def _load_source(path: Path) -> dict[str, Any]:
     try:
         source = json.loads(path.read_text(encoding="utf-8"))
@@ -248,12 +434,13 @@ def update_source(
     release_date = datetime.now(timezone.utc).date().isoformat()
     if apple.get("version") == metadata.version and isinstance(apple.get("currentVersionReleaseDate"), str):
         release_date = apple["currentVersionReleaseDate"]
+    release_notes = _release_notes(apple, versions, metadata.version)
 
     version: dict[str, Any] = {
         "version": metadata.version,
         "buildVersion": metadata.build,
         "date": release_date,
-        "localizedDescription": "Decrypted App Store build. This project adds no tweaks.",
+        "localizedDescription": release_notes,
         "downloadURL": download_url,
         "size": metadata.size,
         "sha256": metadata.sha256,
@@ -290,6 +477,10 @@ def update_source(
     if isinstance(apple.get("artworkUrl512"), str):
         app["iconURL"] = apple["artworkUrl512"]
         source["iconURL"] = apple["artworkUrl512"]
+    screenshots = _apple_screenshots(apple)
+    if screenshots:
+        changed = changed or app.get("screenshots") != screenshots
+        app["screenshots"] = screenshots
 
     permissions = {
         "entitlements": list(metadata.entitlements),
@@ -385,13 +576,18 @@ async def download_from_eevee(app_url: str, destination: Path) -> Path:
                     raise UpdateError("Eevee returned an IPA at or above GitHub's 2 GiB limit")
                 destination.unlink(missing_ok=True)
                 remaining = deadline - time.monotonic()
-                downloaded = await asyncio.wait_for(
-                    client.download_media(message, file=str(destination)),
+                await asyncio.wait_for(
+                    client.download_file(
+                        message.document,
+                        file=str(destination),
+                        part_size_kb=512,
+                        file_size=remote_size,
+                    ),
                     timeout=max(1, remaining),
                 )
-                if not downloaded:
+                if not destination.is_file():
                     raise UpdateError("Telegram did not download the IPA")
-                return Path(downloaded)
+                return destination
             await asyncio.sleep(10)
     finally:
         await client.disconnect()
@@ -465,7 +661,13 @@ def _github_output(values: dict[str, str]) -> None:
     if output:
         with Path(output).open("a", encoding="utf-8") as handle:
             for key, value in values.items():
-                handle.write(f"{key}={value}\n")
+                if "\n" in value or "\r" in value:
+                    delimiter = f"ghadelimiter_{uuid.uuid4().hex}"
+                    while delimiter in value:
+                        delimiter = f"ghadelimiter_{uuid.uuid4().hex}"
+                    handle.write(f"{key}<<{delimiter}\n{value}\n{delimiter}\n")
+                else:
+                    handle.write(f"{key}={value}\n")
     else:
         print(json.dumps(values, indent=2))
 
@@ -491,8 +693,13 @@ def run_update(args: argparse.Namespace) -> None:
     download_url = f"https://github.com/{repository}/releases/download/{tag}/{asset_name}"
 
     if downloaded != asset_path:
-        shutil.copy2(downloaded, asset_path)
+        if not args.ipa and downloaded.parent == asset_path.parent:
+            downloaded.replace(asset_path)
+        else:
+            shutil.copy2(downloaded, asset_path)
     apple = fetch_apple_metadata()
+    existing_source = _load_source(source_path)
+    release_notes = _release_notes(apple, existing_source["apps"][0]["versions"], metadata.version)
     changed = update_source(source_path, metadata, download_url, apple)
     _github_output(
         {
@@ -503,6 +710,7 @@ def run_update(args: argparse.Namespace) -> None:
             "asset_name": asset_name,
             "asset_path": asset_path.as_posix(),
             "sha256": metadata.sha256,
+            "release_notes": release_notes,
         }
     )
     status = "Prepared" if changed else "Verified"

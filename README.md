@@ -4,6 +4,8 @@ This repository publishes an unofficial AltSource feed for the standard Discord 
 
 The source works with KSign and AltStore Classic. It does not work with AltStore PAL, which requires Apple-notarized alternative distribution packages.
 
+The feed uses the standard AltSource format. It may also be useful to people searching for Discord with SideStore, Scarlet, ESign, Feather, GBox, Sideloadly, or TrollStore, although those apps are not tested here.
+
 ## Source URL
 
 Add this URL to KSign or AltStore Classic:
@@ -12,7 +14,7 @@ Add this URL to KSign or AltStore Classic:
 https://raw.githubusercontent.com/AlfaActa/discord-altstore-source/main/source.json
 ```
 
-The source stays empty until the first successful update publishes an IPA release.
+The feed is populated automatically after the first successful update publishes an IPA release.
 
 ## Set up automatic updates
 
@@ -20,7 +22,7 @@ Use a dedicated Telegram account. A Telegram session grants full access to that 
 
 1. Create an API ID and API hash at [my.telegram.org](https://my.telegram.org).
 2. Install Python 3.11 or newer and GitHub CLI.
-3. Install the one Python dependency:
+3. Install the Python dependencies:
 
    ```powershell
    python -m pip install -r requirements.txt
@@ -40,7 +42,7 @@ Use a dedicated Telegram account. A Telegram session grants full access to that 
    gh workflow run update-source.yml --repo AlfaActa/discord-altstore-source
    ```
 
-The workflow checks every Tuesday at 04:17 UTC. GitHub may delay scheduled jobs. It also disables scheduled workflows in public repositories after 60 days without repository activity, so re-enable the workflow if Discord goes that long without a published update.
+The workflow wakes every 15 minutes from Wednesday through Friday and runs one pseudorandom 15-minute slot selected for that ISO week. Manual dispatch runs immediately. GitHub may delay scheduled jobs. It also disables scheduled workflows in public repositories after 60 days without repository activity, so re-enable the workflow if Discord goes that long without a published update.
 
 ## Run locally
 
@@ -64,6 +66,6 @@ python -m unittest -v
 
 ## Trust and legal notice
 
-The updater verifies the bundle identifier, version, build number, archive paths, any embedded provisioning-profile permissions, size, and SHA-256 checksum. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
+The updater verifies the bundle identifier, version, build number, archive paths, size, and SHA-256 checksum. It reads entitlements from an embedded provisioning profile when one exists, and from the Mach-O code signatures of the app and its extensions when possible. Each source entry includes the App Store's iPhone and iPad screenshots and its What's New text when Apple provides them. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
 
 This project is not affiliated with Discord Inc., Apple Inc., or Eevee IPA Decrypter. Discord and its assets belong to their respective owners. Public release assets may be removed after a copyright complaint.

@@ -1,5 +1,7 @@
 import json
+import os
 import plistlib
+import struct
 import tempfile
 import unittest
 import zipfile
@@ -68,6 +70,24 @@ class UpdaterTests(unittest.TestCase):
         self.assertEqual(metadata.entitlements, ("aps-environment",))
         self.assertEqual(metadata.privacy["NSCameraUsageDescription"], "Discord uses the camera for video calls.")
 
+    def test_reads_macho_signature_entitlements(self):
+        entitlements = plistlib.dumps(
+            {
+                "application-identifier": "TEAM.bundle",
+                "com.apple.security.application-groups": ["group.example"],
+            },
+            fmt=plistlib.FMT_XML,
+        )
+        entitlement_blob = struct.pack(">II", updater.CSMAGIC_ENTITLEMENTS, 8 + len(entitlements)) + entitlements
+        signature = (
+            struct.pack(">III", updater.CSMAGIC_EMBEDDED_SIGNATURE, 20 + len(entitlement_blob), 1)
+            + struct.pack(">II", updater.CSSLOT_ENTITLEMENTS, 20)
+            + entitlement_blob
+        )
+        header = struct.pack("<IiiIIIII", 0xFEEDFACF, 0, 0, 2, 1, 16, 0, 0)
+        command = struct.pack("<IIII", updater.LC_CODE_SIGNATURE, 16, 48, len(signature))
+        self.assertEqual(updater._signature_entitlements(header + command + signature), {"com.apple.security.application-groups"})
+
     def test_accepts_app_store_ipa_without_provisioning_profile(self):
         metadata = updater.inspect_ipa(self.make_ipa(profile=False))
         self.assertEqual(metadata.entitlements, ())
@@ -127,6 +147,43 @@ class UpdaterTests(unittest.TestCase):
         self.assertEqual(app["downloadURL"], "https://example.com/343.ipa")
         self.assertEqual(app["version"], "343.0")
         self.assertEqual(app["appPermissions"]["entitlements"], ["aps-environment"])
+
+    def test_adds_app_store_screenshots_and_release_notes(self):
+        source = self.make_source()
+        metadata = updater.inspect_ipa(self.make_ipa())
+        apple = {
+            "version": "342.0",
+            "releaseNotes": "New voice features.\n\nSmaller fixes.",
+            "screenshotUrls": ["https://example.com/392x696bb.png"],
+            "ipadScreenshotUrls": ["https://example.com/552x414bb.png"],
+        }
+        updater.update_source(source, metadata, "https://example.com/342.ipa", apple)
+        app = json.loads(source.read_text(encoding="utf-8"))["apps"][0]
+        self.assertEqual(app["screenshots"]["iphone"][0]["width"], 392)
+        self.assertEqual(app["screenshots"]["ipad"][0]["height"], 414)
+        self.assertEqual(app["versions"][0]["localizedDescription"], apple["releaseNotes"])
+
+    def test_uses_previous_release_notes_when_app_store_has_none(self):
+        source = self.make_source()
+        document = json.loads(source.read_text(encoding="utf-8"))
+        document["apps"][0]["versions"].append(
+            {"version": "341.0", "buildVersion": "70000", "localizedDescription": "Previous App Store note."}
+        )
+        source.write_text(json.dumps(document), encoding="utf-8")
+        metadata = updater.inspect_ipa(self.make_ipa(version="342.0"))
+        updater.update_source(source, metadata, "https://example.com/342.ipa", {"version": "342.0"})
+        app = json.loads(source.read_text(encoding="utf-8"))["apps"][0]
+        self.assertEqual(app["versions"][0]["localizedDescription"], "Previous App Store note.")
+
+    def test_writes_multiline_github_outputs_safely(self):
+        output = self.root / "github-output"
+        with mock.patch.dict(os.environ, {"GITHUB_OUTPUT": str(output)}):
+            updater._github_output({"release_notes": "First line\n\nSecond line", "version": "342.0"})
+        lines = output.read_text(encoding="utf-8").splitlines()
+        delimiter = lines[0].split("<<", 1)[1]
+        self.assertEqual(lines[1:4], ["First line", "", "Second line"])
+        self.assertEqual(lines[4], delimiter)
+        self.assertEqual(lines[5], "version=342.0")
 
     def test_rejects_duplicate_version_with_different_hash(self):
         source = self.make_source()
