@@ -69,12 +69,6 @@ To use an IPA you already downloaded:
 python updater.py update "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746" --ipa "C:\path\to\Discord.ipa"
 ```
 
-Run the checks with:
-
-```powershell
-python -m unittest -v
-```
-
 ## Trust and legal notice
 
 The updater verifies the bundle identifier, version, build number, archive paths, size, and SHA-256 checksum. It reads entitlements from an embedded provisioning profile when one exists, and from the Mach-O code signatures of the app and its extensions when possible. It cannot prove that Eevee's output is identical to Apple's encrypted package. Review the upstream service before installing its files.
