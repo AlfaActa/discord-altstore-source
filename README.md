@@ -1,6 +1,17 @@
 # Discord AltStore Source
 
-[![Update Source](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fbadge.json&style=flat-square&cacheSeconds=300)](https://github.com/AlfaActa/discord-altstore-source/actions/workflows/update-source.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-4F545C?style=flat-square&labelColor=5865F2)](LICENSE) [![Discord Versions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&query=%24.apps%5B0%5D.versions.length&label=Discord%20Versions&labelColor=5865F2&color=4F545C&style=flat-square)](source.json) [![Downloads](https://img.shields.io/github/downloads/AlfaActa/discord-altstore-source/total?style=flat-square&logo=github&label=Downloads&labelColor=5865F2&color=4F545C)](https://github.com/AlfaActa/discord-altstore-source/releases) [![Last Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&query=%24.apps%5B0%5D.versions%5B0%5D.version&label=Last%20Version&labelColor=5865F2&color=4F545C&style=flat-square)](source.json) [![Last Release Date](https://img.shields.io/github/release-date/AlfaActa/discord-altstore-source?style=flat-square&label=Last%20Release%20Date&labelColor=5865F2&color=4F545C)](https://github.com/AlfaActa/discord-altstore-source/releases)
+<table>
+  <tr>
+    <td><a href="https://github.com/AlfaActa/discord-altstore-source/actions/workflows/update-source.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fbadge.json&amp;style=flat-square&amp;cacheSeconds=300" alt="Update Source"></a></td>
+    <td><a href="source.json"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&amp;query=%24.apps%5B0%5D.versions.length&amp;label=Discord%20Versions&amp;labelColor=5865F2&amp;color=4F545C&amp;style=flat-square" alt="Discord Versions"></a></td>
+    <td><a href="source.json"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&amp;query=%24.apps%5B0%5D.versions%5B0%5D.version&amp;label=Last%20Version&amp;labelColor=5865F2&amp;color=4F545C&amp;style=flat-square" alt="Last Version"></a></td>
+  </tr>
+  <tr>
+    <td><a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-4F545C?style=flat-square&amp;labelColor=5865F2" alt="License: MIT"></a></td>
+    <td><a href="https://github.com/AlfaActa/discord-altstore-source/releases"><img src="https://img.shields.io/github/downloads/AlfaActa/discord-altstore-source/total?style=flat-square&amp;logo=github&amp;label=Downloads&amp;labelColor=5865F2&amp;color=4F545C" alt="Downloads"></a></td>
+    <td><a href="https://github.com/AlfaActa/discord-altstore-source/releases"><img src="https://img.shields.io/github/release-date/AlfaActa/discord-altstore-source?style=flat-square&amp;label=Last%20Release%20Date&amp;labelColor=5865F2&amp;color=4F545C" alt="Last Release Date"></a></td>
+  </tr>
+</table>
 
 <p align="center">
   <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746">
