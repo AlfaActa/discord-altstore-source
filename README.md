@@ -14,30 +14,6 @@ Add this URL to your signing app:
 https://raw.githubusercontent.com/AlfaActa/discord-altstore-source/main/source.json
 ```
 
-## Automatic updates
-
-Use a dedicated Telegram user account. Create an API ID and API hash at [my.telegram.org](https://my.telegram.org), then install Python 3.11+ and GitHub CLI:
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-Sign in with:
-
-```powershell
-python updater.py auth
-```
-
-The command stores `TELEGRAM_API_ID`, `TELEGRAM_API_HASH`, `TELEGRAM_SESSION`, and `EEVEE_BOT_ID` through GitHub CLI.
-
-Start the first update:
-
-```powershell
-gh workflow run update-source.yml --repo AlfaActa/discord-altstore-source
-```
-
-The scheduler checks Friday every 15 minutes, chooses one stable pseudorandom UTC quarter-hour, and dispatches the updater once at or after it. GitHub may delay scheduled runs.
-
 ## Run locally
 
 To ask Eevee for the IPA and update the local source:
