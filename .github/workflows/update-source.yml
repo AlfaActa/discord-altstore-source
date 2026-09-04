@@ -78,3 +78,27 @@ jobs:
           git add source.json
           git commit -m "chore(source): add Discord $VERSION ($BUILD)"
           git push
+
+      - name: Update workflow badge
+        if: always()
+        continue-on-error: true
+        env:
+          STATUS: ${{ job.status }}
+        shell: bash
+        run: |
+          if [ "$STATUS" = "success" ]; then
+            message=passing
+            color=006c37
+          else
+            message="not passing"
+            color=ED4245
+          fi
+          printf '{"schemaVersion":1,"label":"Update Source","message":"%s","color":"%s","labelColor":"5865F2"}\n' "$message" "$color" > badge.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add badge.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: update workflow badge"
+          git push
