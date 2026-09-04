@@ -1,25 +1,12 @@
 # Discord AltStore Source
 
-<table>
-  <tr>
-    <td><a href="https://github.com/AlfaActa/discord-altstore-source/actions/workflows/update-source.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fbadge.json&amp;style=flat-square&amp;cacheSeconds=300" alt="Update Source"></a></td>
-    <td><a href="source.json"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&amp;query=%24.apps%5B0%5D.versions.length&amp;label=Discord%20Versions&amp;labelColor=5865F2&amp;color=4F545C&amp;style=flat-square" alt="Discord Versions"></a></td>
-    <td><a href="source.json"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&amp;query=%24.apps%5B0%5D.versions%5B0%5D.version&amp;label=Last%20Version&amp;labelColor=5865F2&amp;color=4F545C&amp;style=flat-square" alt="Last Version"></a></td>
-  </tr>
-  <tr>
-    <td><a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-4F545C?style=flat-square&amp;labelColor=5865F2" alt="License: MIT"></a></td>
-    <td><a href="https://github.com/AlfaActa/discord-altstore-source/releases"><img src="https://img.shields.io/github/downloads/AlfaActa/discord-altstore-source/total?style=flat-square&amp;logo=github&amp;label=Downloads&amp;labelColor=5865F2&amp;color=4F545C" alt="Downloads"></a></td>
-    <td><a href="https://github.com/AlfaActa/discord-altstore-source/releases"><img src="https://img.shields.io/github/release-date/AlfaActa/discord-altstore-source?style=flat-square&amp;label=Last%20Release%20Date&amp;labelColor=5865F2&amp;color=4F545C" alt="Last Release Date"></a></td>
-  </tr>
-</table>
-
-<p align="center">
-  <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746">
-    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e9/54/bf/e954bfcc-dbe3-7531-99d9-1696ab804e46/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg" alt="Discord logo" width="96">
-  </a>
-</p>
-<p align="center">
-  <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e1/a6/f3/e1a6f308-6a0f-790c-9937-ca3065d89bf4/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_2732x2048_EN.png/552x414bb.png" alt="Discord App Store banner" width="720">
+<p>
+  <a href="https://github.com/AlfaActa/discord-altstore-source/actions/workflows/update-source.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fbadge.json&amp;style=flat-square&amp;cacheSeconds=300" alt="Update Source"></a>&nbsp;&nbsp;
+  <a href="source.json"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&amp;query=%24.apps%5B0%5D.versions.length&amp;label=Discord%20Versions&amp;labelColor=5865F2&amp;color=4F545C&amp;style=flat-square" alt="Discord Versions"></a>&nbsp;&nbsp;
+  <a href="source.json"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAlfaActa%2Fdiscord-altstore-source%2Fmain%2Fsource.json&amp;query=%24.apps%5B0%5D.versions%5B0%5D.version&amp;label=Last%20Version&amp;labelColor=5865F2&amp;color=4F545C&amp;style=flat-square" alt="Last Version"></a><br>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-4F545C?style=flat-square&amp;labelColor=5865F2" alt="License: MIT"></a>&nbsp;&nbsp;
+  <a href="https://github.com/AlfaActa/discord-altstore-source/releases"><img src="https://img.shields.io/github/downloads/AlfaActa/discord-altstore-source/total?style=flat-square&amp;logo=github&amp;label=Downloads&amp;labelColor=5865F2&amp;color=4F545C" alt="Downloads"></a>&nbsp;&nbsp;
+  <a href="https://github.com/AlfaActa/discord-altstore-source/releases"><img src="https://img.shields.io/github/release-date/AlfaActa/discord-altstore-source?style=flat-square&amp;label=Last%20Release%20Date&amp;labelColor=5865F2&amp;color=4F545C" alt="Last Release Date"></a>
 </p>
 
 This repository publishes an unofficial AltSource feed for the standard Discord App Store build. The updater asks [Eevee IPA Decrypter](https://t.me/eeveedecrypterbot) for the latest decrypted IPA and does not inject tweaks or make other changes.
