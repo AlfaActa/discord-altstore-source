@@ -46,7 +46,7 @@ jobs:
           RELEASE_NOTES: ${{ steps.update.outputs.release_notes }}
         shell: bash
         run: |
-          release_notes_body=$(printf '%s\n\nSHA-256: %s' "$RELEASE_NOTES" "$SHA256")
+          release_notes_body=$(printf '%s\n\n---\n\n### IPA Integrity\n\n<code>SHA-256: %s</code>' "$RELEASE_NOTES" "$SHA256")
           if gh release view "$TAG" >/dev/null 2>&1; then
             remote_digest=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" \
               --jq ".assets[] | select(.name == \"$ASSET_NAME\") | .digest")
