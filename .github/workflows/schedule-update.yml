@@ -18,7 +18,7 @@ permissions:
 
 concurrency:
   group: discord-source-scheduler
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   dispatch:
@@ -38,15 +38,32 @@ jobs:
           week=$(date -u +%G-%V)
           seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
           target_slot=$((16#${seed:0:8} % 96))
+          current_day=$(date -u +%u)
           hour=$(date -u +%H)
           minute=$(date -u +%M)
           current_slot=$((10#$hour * 4 + 10#$minute / 15))
 
-          if [ "$FORCE" = "true" ] || {
-            [ "$current_slot" -eq "$target_slot" ];
-          }; then
-            gh workflow run update-source.yml --repo "$GITHUB_REPOSITORY" --ref main
-            echo "Dispatched the updater for ISO week $week."
-          else
-            echo "No dispatch for ISO week $week."
+          if [ "$FORCE" != "true" ] && [ "$current_day" -ne 5 ]; then
+            echo "Not Friday in UTC."
+            exit 0
           fi
+
+          if [ "$FORCE" != "true" ] && [ "$current_slot" -lt "$target_slot" ]; then
+            echo "No dispatch for ISO week $week."
+            exit 0
+          fi
+
+          today=$(date -u +%F)
+          already_dispatched=$(gh run list \
+            --repo "$GITHUB_REPOSITORY" \
+            --workflow update-source.yml \
+            --event workflow_dispatch \
+            --limit 20 \
+            --json createdAt | jq --arg today "$today" '[.[] | select(.createdAt | startswith($today))] | length')
+          if [ "$FORCE" != "true" ] && [ "$already_dispatched" -gt 0 ]; then
+            echo "Updater already dispatched on $today."
+            exit 0
+          fi
+
+          gh workflow run update-source.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo "Dispatched the updater for ISO week $week."
