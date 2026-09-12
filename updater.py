@@ -497,6 +497,13 @@ def update_source(
     if screenshots:
         changed = changed or app.get("screenshots") != screenshots
         app["screenshots"] = screenshots
+        screenshot_urls = [
+            entry["imageURL"]
+            for device in ("iphone", "ipad")
+            for entry in screenshots.get(device, [])
+        ]
+        changed = changed or app.get("screenshotURLs") != screenshot_urls
+        app["screenshotURLs"] = screenshot_urls
     header_url = _apple_header_url(apple)
     if header_url:
         changed = changed or source.get("headerURL") != header_url
