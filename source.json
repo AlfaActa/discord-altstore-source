@@ -3,7 +3,7 @@
   "identifier": "com.arad00ak.discord-source",
   "subtitle": "Discord App Store builds for sideloading.",
   "description": "An unofficial source for decrypted Discord App Store builds. This project does not add tweaks or other modifications.",
-  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6d/62/89/6d628952-77a9-1995-09af-470a21fd53bd/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/37/35/3a/37353aac-9951-768d-48bc-5097346a0cb5/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
   "website": "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
   "tintColor": "5865F2",
   "apps": [
@@ -13,10 +13,20 @@
       "developerName": "Discord Inc.",
       "subtitle": "The standard Discord app with no tweaks added.",
       "localizedDescription": "A decrypted Discord App Store build for sideloading. This source is unofficial and is not affiliated with Discord Inc.",
-      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6d/62/89/6d628952-77a9-1995-09af-470a21fd53bd/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/37/35/3a/37353aac-9951-768d-48bc-5097346a0cb5/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
       "tintColor": "5865F2",
       "category": "social",
       "versions": [
+        {
+          "version": "348.0",
+          "buildVersion": "113691",
+          "date": "2026-10-05T18:46:29Z",
+          "localizedDescription": "We’ve been hard at work making Discord better for you. This includes bug fixes and performance enhancements. For more detailed information, go to your profile in the app and scroll down to “What’s New”.",
+          "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v348.0-b113691/Discord_348.0_113691.ipa",
+          "size": 116109892,
+          "sha256": "84d22987c27ce0b3c892d71c99bc5da25d4145229096348a90373653336e6c98",
+          "minOSVersion": "16.0"
+        },
         {
           "version": "347.0",
           "buildVersion": "112799",
@@ -84,6 +94,7 @@
           "com.apple.developer.associated-domains",
           "com.apple.developer.avfoundation.multitasking-camera-access",
           "com.apple.developer.declared-age-range",
+          "com.apple.developer.devicecheck.appattest-environment",
           "com.apple.developer.kernel.increased-memory-limit",
           "com.apple.developer.networking.carrier-constrained.appcategory",
           "com.apple.developer.storekit.request-data",
@@ -105,98 +116,92 @@
           "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
         }
       },
-      "version": "347.0",
-      "versionDate": "2026-09-28T19:52:03Z",
-      "size": 111108320,
-      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v347.0-b112799/Discord_347.0_112799.ipa",
+      "version": "348.0",
+      "versionDate": "2026-10-05T18:46:29Z",
+      "size": 116109892,
+      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v348.0-b113691/Discord_348.0_113691.ipa",
       "minOSVersion": "16.0",
       "screenshots": {
         "iphone": [
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/24/4c/42/244c42b9-0433-6108-6801-d3163d22c4cc/86d98c10-0014-4bcb-89a5-39c7776e014e_1_GroupChat_Tile_EN_5-5.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ad/d3/b2/add3b237-7c40-ff98-a316-dd24f749cb27/1242x2208_-_1_GroupChat.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/63/78/09/637809c2-08ec-3525-6deb-81bc8cfa258d/5cc22caa-9cad-409f-9de8-f852cabe5d08_2_Stream_Tile_EN_5-5.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/46/e6/e9/46e6e9bc-4c8d-d1ff-9e84-b7a29f6503cb/1242x2208_-_2_Stream.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/c6/01/7bc601c6-3616-ee25-7344-47a422a76729/4440dc86-9288-47c3-afe2-cd9b804c8700_3_SeeWhos_Tile_EN_5-5.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/0a/31/f50a314d-a0ae-7960-689d-22200091e98e/1242x2208_-_3_SeeWhos.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/e9/a8/5de9a80f-f644-5b14-cb4d-e6a9e6f3dc55/ee397381-34db-4de9-a43f-d4ab27989e36_4_HopIn_Tile_EN_5-5.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a3/07/f9/a307f9e1-6205-39cd-ddba-b12ffa34c721/1242x2208_-_4_HopIn.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e5/4c/de/e54cde6f-01ae-6a35-17b8-b4bc3b3dee08/5e8db952-8709-48b5-abd9-c026ef82f629_5_ToDo_Tile_EN_5-5.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c0/b7/27/c0b72782-3559-0f3c-a1fe-8592abfac58d/1242x2208_-_5_ToDos.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/29/53/b6/2953b6e5-3b04-bcfe-839d-9b3bea691374/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_1242x2208_EN.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/51/a5/ea/51a5eaf2-9811-e47d-2b80-a8e80ce819a7/1242x2208_-_6_GameHere.png/392x696bb.png",
             "width": 392,
             "height": 696
           }
         ],
         "ipad": [
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8b/31/58/8b31585c-071d-e6f5-ac55-094f6970e935/7de07cce-ee28-4229-b929-1b100151249c_1_GroupChat_Tablet_2732x2048.png/552x414bb.png",
-            "width": 552,
-            "height": 414
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/35/bf/dd/35bfdd33-f380-2a52-6358-1b9ca868beb3/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_1_GroupChat.png/360x480bb.jpg",
+            "width": 360,
+            "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d6/da/b6/d6dab621-d40f-242f-08dd-fb31c27bb027/343cc940-75f3-4ee8-a2bc-b99730a835f3_2_Stream_Tablet_2732x2048.png/552x414bb.png",
-            "width": 552,
-            "height": 414
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ab/f7/53/abf75305-3c18-1345-f132-379730614afc/_Tablet__13__-_2752_x_2064_-_2_Stream.png/360x480bb.jpg",
+            "width": 360,
+            "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/70/a7/a5/70a7a5ca-742f-40c4-fb60-f2a90e921ca7/03d4cebb-3839-4fe2-b6c5-478c14febe67_3_SeeWhos_Tablet_2732x2048.png/552x414bb.png",
-            "width": 552,
-            "height": 414
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8d/ec/50/8dec50d6-9787-e842-9eee-dcc9dd33b729/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_3_SeeWhos.png/360x480bb.jpg",
+            "width": 360,
+            "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/38/f4/b838f4dd-1d30-b6d3-3291-c40337948e88/c60bd074-56ff-417f-9518-f3722d65fb8e_4_HopIn_Tablet_2732x2048.png/552x414bb.png",
-            "width": 552,
-            "height": 414
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/d2/3a/5dd23a70-a651-4a33-69d0-26af89ac4208/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_4_HopIn.png/360x480bb.jpg",
+            "width": 360,
+            "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f3/b2/e5/f3b2e585-b280-ced0-9f67-a2fcdcaa498a/3dc018e2-08f8-40e6-a1f2-9b2c5645011f_5_ToDo_Tablet_2732x2048.png/552x414bb.png",
-            "width": 552,
-            "height": 414
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/76/ac/2076ac52-3532-56ed-d302-1d42706de5d3/_Tablet__13__-_2752_x_2064_-_5_ToDo.png/360x480bb.jpg",
+            "width": 360,
+            "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/c1/42/39c14273-0d40-81b6-d8e7-1b2d486b7fa4/adbd4d2f-3254-439a-b8f3-fdaeb015172d_6_GameHere_Tablet_2732x2048.png/552x414bb.png",
-            "width": 552,
-            "height": 414
-          },
-          {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e1/a6/f3/e1a6f308-6a0f-790c-9937-ca3065d89bf4/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_2732x2048_EN.png/552x414bb.png",
-            "width": 552,
-            "height": 414
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/80/74/72807442-47b1-9c8b-b1be-d844b5d96519/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg",
+            "width": 360,
+            "height": 480
           }
         ]
       },
       "screenshotURLs": [
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/24/4c/42/244c42b9-0433-6108-6801-d3163d22c4cc/86d98c10-0014-4bcb-89a5-39c7776e014e_1_GroupChat_Tile_EN_5-5.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/63/78/09/637809c2-08ec-3525-6deb-81bc8cfa258d/5cc22caa-9cad-409f-9de8-f852cabe5d08_2_Stream_Tile_EN_5-5.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/c6/01/7bc601c6-3616-ee25-7344-47a422a76729/4440dc86-9288-47c3-afe2-cd9b804c8700_3_SeeWhos_Tile_EN_5-5.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/e9/a8/5de9a80f-f644-5b14-cb4d-e6a9e6f3dc55/ee397381-34db-4de9-a43f-d4ab27989e36_4_HopIn_Tile_EN_5-5.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e5/4c/de/e54cde6f-01ae-6a35-17b8-b4bc3b3dee08/5e8db952-8709-48b5-abd9-c026ef82f629_5_ToDo_Tile_EN_5-5.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/29/53/b6/2953b6e5-3b04-bcfe-839d-9b3bea691374/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_1242x2208_EN.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8b/31/58/8b31585c-071d-e6f5-ac55-094f6970e935/7de07cce-ee28-4229-b929-1b100151249c_1_GroupChat_Tablet_2732x2048.png/552x414bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d6/da/b6/d6dab621-d40f-242f-08dd-fb31c27bb027/343cc940-75f3-4ee8-a2bc-b99730a835f3_2_Stream_Tablet_2732x2048.png/552x414bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/70/a7/a5/70a7a5ca-742f-40c4-fb60-f2a90e921ca7/03d4cebb-3839-4fe2-b6c5-478c14febe67_3_SeeWhos_Tablet_2732x2048.png/552x414bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b8/38/f4/b838f4dd-1d30-b6d3-3291-c40337948e88/c60bd074-56ff-417f-9518-f3722d65fb8e_4_HopIn_Tablet_2732x2048.png/552x414bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f3/b2/e5/f3b2e585-b280-ced0-9f67-a2fcdcaa498a/3dc018e2-08f8-40e6-a1f2-9b2c5645011f_5_ToDo_Tablet_2732x2048.png/552x414bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/c1/42/39c14273-0d40-81b6-d8e7-1b2d486b7fa4/adbd4d2f-3254-439a-b8f3-fdaeb015172d_6_GameHere_Tablet_2732x2048.png/552x414bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e1/a6/f3/e1a6f308-6a0f-790c-9937-ca3065d89bf4/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_2732x2048_EN.png/552x414bb.png"
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ad/d3/b2/add3b237-7c40-ff98-a316-dd24f749cb27/1242x2208_-_1_GroupChat.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/46/e6/e9/46e6e9bc-4c8d-d1ff-9e84-b7a29f6503cb/1242x2208_-_2_Stream.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/0a/31/f50a314d-a0ae-7960-689d-22200091e98e/1242x2208_-_3_SeeWhos.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a3/07/f9/a307f9e1-6205-39cd-ddba-b12ffa34c721/1242x2208_-_4_HopIn.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c0/b7/27/c0b72782-3559-0f3c-a1fe-8592abfac58d/1242x2208_-_5_ToDos.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/51/a5/ea/51a5eaf2-9811-e47d-2b80-a8e80ce819a7/1242x2208_-_6_GameHere.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/35/bf/dd/35bfdd33-f380-2a52-6358-1b9ca868beb3/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_1_GroupChat.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ab/f7/53/abf75305-3c18-1345-f132-379730614afc/_Tablet__13__-_2752_x_2064_-_2_Stream.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8d/ec/50/8dec50d6-9787-e842-9eee-dcc9dd33b729/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_3_SeeWhos.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/d2/3a/5dd23a70-a651-4a33-69d0-26af89ac4208/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_4_HopIn.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/76/ac/2076ac52-3532-56ed-d302-1d42706de5d3/_Tablet__13__-_2752_x_2064_-_5_ToDo.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/80/74/72807442-47b1-9c8b-b1be-d844b5d96519/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg"
       ]
     }
   ],
-  "headerURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e1/a6/f3/e1a6f308-6a0f-790c-9937-ca3065d89bf4/Hero_Image__U0028for_Apple_store_U0029_Server__U0028no_members_list_U0029_2732x2048_EN.png/552x414bb.png"
+  "headerURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/80/74/72807442-47b1-9c8b-b1be-d844b5d96519/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg"
 }
