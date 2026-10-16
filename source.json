@@ -3,7 +3,7 @@
   "identifier": "com.arad00ak.discord-source",
   "subtitle": "Discord App Store builds for sideloading.",
   "description": "An unofficial source for decrypted Discord App Store builds. This project does not add tweaks or other modifications.",
-  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/37/35/3a/37353aac-9951-768d-48bc-5097346a0cb5/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2b/c1/68/2bc1682e-91a1-8d2f-539c-bfda04dc16a3/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
   "website": "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
   "tintColor": "5865F2",
   "apps": [
@@ -13,10 +13,20 @@
       "developerName": "Discord Inc.",
       "subtitle": "The standard Discord app with no tweaks added.",
       "localizedDescription": "A decrypted Discord App Store build for sideloading. This source is unofficial and is not affiliated with Discord Inc.",
-      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/37/35/3a/37353aac-9951-768d-48bc-5097346a0cb5/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2b/c1/68/2bc1682e-91a1-8d2f-539c-bfda04dc16a3/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
       "tintColor": "5865F2",
       "category": "social",
       "versions": [
+        {
+          "version": "349.0",
+          "buildVersion": "114462",
+          "date": "2026-10-13T19:06:29Z",
+          "localizedDescription": "We’ve been hard at work making Discord better for you. This includes bug fixes and performance enhancements. For more detailed information, go to your profile in the app and scroll down to “What’s New”.",
+          "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v349.0-b114462/Discord_349.0_114462.ipa",
+          "size": 112201071,
+          "sha256": "4897debe57787e8303b7dbed53a04b34a09696b07b2821c9ded2c2616b143932",
+          "minOSVersion": "16.0"
+        },
         {
           "version": "348.0",
           "buildVersion": "113691",
@@ -116,92 +126,92 @@
           "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
         }
       },
-      "version": "348.0",
-      "versionDate": "2026-10-05T18:46:29Z",
-      "size": 116109892,
-      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v348.0-b113691/Discord_348.0_113691.ipa",
+      "version": "349.0",
+      "versionDate": "2026-10-13T19:06:29Z",
+      "size": 112201071,
+      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v349.0-b114462/Discord_349.0_114462.ipa",
       "minOSVersion": "16.0",
       "screenshots": {
         "iphone": [
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ad/d3/b2/add3b237-7c40-ff98-a316-dd24f749cb27/1242x2208_-_1_GroupChat.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/17/6b/df/176bdf6b-a84a-97e9-2234-8e1a1294870b/1242x2208_-_1_GroupChat.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/46/e6/e9/46e6e9bc-4c8d-d1ff-9e84-b7a29f6503cb/1242x2208_-_2_Stream.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/aa/f8/b0/aaf8b04d-aeaf-0c0a-400c-ccfb4814bd8e/1242x2208_-_2_Stream.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/0a/31/f50a314d-a0ae-7960-689d-22200091e98e/1242x2208_-_3_SeeWhos.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7e/ff/6b/7eff6b74-cd45-783d-6916-c5e5d78b9344/1242x2208_-_3_SeeWhos.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a3/07/f9/a307f9e1-6205-39cd-ddba-b12ffa34c721/1242x2208_-_4_HopIn.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ac/f4/5d/acf45d38-0458-fe1a-fad2-ac27eda22f5b/1242x2208_-_4_HopIn.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c0/b7/27/c0b72782-3559-0f3c-a1fe-8592abfac58d/1242x2208_-_5_ToDos.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/10/e4/8a/10e48a77-0e5b-94b8-35d5-2227676b48dc/1242x2208_-_5_ToDos.png/392x696bb.png",
             "width": 392,
             "height": 696
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/51/a5/ea/51a5eaf2-9811-e47d-2b80-a8e80ce819a7/1242x2208_-_6_GameHere.png/392x696bb.png",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/25/99/e3/2599e35c-0cc8-a489-83b5-d03377f135b5/1242x2208_-_6_GameHere.png/392x696bb.png",
             "width": 392,
             "height": 696
           }
         ],
         "ipad": [
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/35/bf/dd/35bfdd33-f380-2a52-6358-1b9ca868beb3/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_1_GroupChat.png/360x480bb.jpg",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/bf/05/99/bf059979-d96e-8e00-51c5-0b14653b153a/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_1_GroupChat.png/360x480bb.jpg",
             "width": 360,
             "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ab/f7/53/abf75305-3c18-1345-f132-379730614afc/_Tablet__13__-_2752_x_2064_-_2_Stream.png/360x480bb.jpg",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/33/fe/3f/33fe3fdd-bf10-2be0-96f2-e0e886ec744d/_Tablet__13__-_2752_x_2064_-_2_Stream.png/360x480bb.jpg",
             "width": 360,
             "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8d/ec/50/8dec50d6-9787-e842-9eee-dcc9dd33b729/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_3_SeeWhos.png/360x480bb.jpg",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/3e/64/e3/3e64e3bc-3cfc-ad49-213e-3a99aa139f7e/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_3_SeeWhos.png/360x480bb.jpg",
             "width": 360,
             "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/d2/3a/5dd23a70-a651-4a33-69d0-26af89ac4208/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_4_HopIn.png/360x480bb.jpg",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1d/c1/ad/1dc1ad49-5039-078c-e00e-ebe89875dcc1/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_4_HopIn.png/360x480bb.jpg",
             "width": 360,
             "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/76/ac/2076ac52-3532-56ed-d302-1d42706de5d3/_Tablet__13__-_2752_x_2064_-_5_ToDo.png/360x480bb.jpg",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7a/90/f9/7a90f9b4-33d6-dfb6-09e8-b1188ad27f6e/_Tablet__13__-_2752_x_2064_-_5_ToDo.png/360x480bb.jpg",
             "width": 360,
             "height": 480
           },
           {
-            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/80/74/72807442-47b1-9c8b-b1be-d844b5d96519/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg",
+            "imageURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/98/22/6d/98226d61-0bd9-e8c0-a4a1-6195764e3e1d/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg",
             "width": 360,
             "height": 480
           }
         ]
       },
       "screenshotURLs": [
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ad/d3/b2/add3b237-7c40-ff98-a316-dd24f749cb27/1242x2208_-_1_GroupChat.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/46/e6/e9/46e6e9bc-4c8d-d1ff-9e84-b7a29f6503cb/1242x2208_-_2_Stream.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/0a/31/f50a314d-a0ae-7960-689d-22200091e98e/1242x2208_-_3_SeeWhos.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a3/07/f9/a307f9e1-6205-39cd-ddba-b12ffa34c721/1242x2208_-_4_HopIn.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c0/b7/27/c0b72782-3559-0f3c-a1fe-8592abfac58d/1242x2208_-_5_ToDos.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/51/a5/ea/51a5eaf2-9811-e47d-2b80-a8e80ce819a7/1242x2208_-_6_GameHere.png/392x696bb.png",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/35/bf/dd/35bfdd33-f380-2a52-6358-1b9ca868beb3/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_1_GroupChat.png/360x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ab/f7/53/abf75305-3c18-1345-f132-379730614afc/_Tablet__13__-_2752_x_2064_-_2_Stream.png/360x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8d/ec/50/8dec50d6-9787-e842-9eee-dcc9dd33b729/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_3_SeeWhos.png/360x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5d/d2/3a/5dd23a70-a651-4a33-69d0-26af89ac4208/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_4_HopIn.png/360x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/20/76/ac/2076ac52-3532-56ed-d302-1d42706de5d3/_Tablet__13__-_2752_x_2064_-_5_ToDo.png/360x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/80/74/72807442-47b1-9c8b-b1be-d844b5d96519/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg"
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/17/6b/df/176bdf6b-a84a-97e9-2234-8e1a1294870b/1242x2208_-_1_GroupChat.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/aa/f8/b0/aaf8b04d-aeaf-0c0a-400c-ccfb4814bd8e/1242x2208_-_2_Stream.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7e/ff/6b/7eff6b74-cd45-783d-6916-c5e5d78b9344/1242x2208_-_3_SeeWhos.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ac/f4/5d/acf45d38-0458-fe1a-fad2-ac27eda22f5b/1242x2208_-_4_HopIn.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/10/e4/8a/10e48a77-0e5b-94b8-35d5-2227676b48dc/1242x2208_-_5_ToDos.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/25/99/e3/2599e35c-0cc8-a489-83b5-d03377f135b5/1242x2208_-_6_GameHere.png/392x696bb.png",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/bf/05/99/bf059979-d96e-8e00-51c5-0b14653b153a/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_1_GroupChat.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/33/fe/3f/33fe3fdd-bf10-2be0-96f2-e0e886ec744d/_Tablet__13__-_2752_x_2064_-_2_Stream.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/3e/64/e3/3e64e3bc-3cfc-ad49-213e-3a99aa139f7e/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_3_SeeWhos.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1d/c1/ad/1dc1ad49-5039-078c-e00e-ebe89875dcc1/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_4_HopIn.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7a/90/f9/7a90f9b4-33d6-dfb6-09e8-b1188ad27f6e/_Tablet__13__-_2752_x_2064_-_5_ToDo.png/360x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/98/22/6d/98226d61-0bd9-e8c0-a4a1-6195764e3e1d/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg"
       ]
     }
   ],
-  "headerURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/80/74/72807442-47b1-9c8b-b1be-d844b5d96519/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg"
+  "headerURL": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/98/22/6d/98226d61-0bd9-e8c0-a4a1-6195764e3e1d/_U005bTablet_U005d_13_U201d_-_2752_x_2064_-_6_Gamehere.png/360x480bb.jpg"
 }
