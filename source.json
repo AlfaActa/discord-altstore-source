@@ -3,7 +3,7 @@
   "identifier": "com.arad00ak.discord-source",
   "subtitle": "Discord App Store builds for sideloading.",
   "description": "An unofficial source for decrypted Discord App Store builds. This project does not add tweaks or other modifications.",
-  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/f9/3f/31/f93f310e-890e-e076-7184-a4fa123e4f90/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/69/3b/7e/693b7e6b-55ba-51ba-2608-6b38dabd6021/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
   "website": "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
   "tintColor": "5865F2",
   "apps": [
@@ -13,10 +13,20 @@
       "developerName": "Discord Inc.",
       "subtitle": "The standard Discord app with no tweaks added.",
       "localizedDescription": "A decrypted Discord App Store build for sideloading. This source is unofficial and is not affiliated with Discord Inc.",
-      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/f9/3f/31/f93f310e-890e-e076-7184-a4fa123e4f90/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/69/3b/7e/693b7e6b-55ba-51ba-2608-6b38dabd6021/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
       "tintColor": "5865F2",
       "category": "social",
       "versions": [
+        {
+          "version": "351.0",
+          "buildVersion": "118370",
+          "date": "2026-10-26T23:09:24Z",
+          "localizedDescription": "The “Show spoiler content” setting on the desktop app is now also available on mobile, providing the option to always see what’s behind a ||spoiler tag|| without having to tap to reveal it each time.  \n\nIn addition, we added an eye-shaped button to the password prompt that appears when you make sensitive account changes, such as adding a passkey. Tap it to see what you've typed so far! This one's useful if you're unsure whether you placed an I or an l in \"iiiIIiii1|11LLlllLl|||.\"\n\nAs always, there are hundreds more fixes to dive into, over at dis.gd/PatchNotes.",
+          "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v351.0-b118370/Discord_351.0_118370.ipa",
+          "size": 112861111,
+          "sha256": "b57d9845f5d2c10616524600ccb55c31154c08389140d9f9bd3c3aa75622342e",
+          "minOSVersion": "16.0"
+        },
         {
           "version": "350.0",
           "buildVersion": "115636",
@@ -136,10 +146,10 @@
           "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
         }
       },
-      "version": "350.0",
-      "versionDate": "2026-10-19T17:19:49Z",
-      "size": 112326046,
-      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v350.0-b115636/Discord_350.0_115636.ipa",
+      "version": "351.0",
+      "versionDate": "2026-10-26T23:09:24Z",
+      "size": 112861111,
+      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v351.0-b118370/Discord_351.0_118370.ipa",
       "minOSVersion": "16.0",
       "screenshots": {
         "iphone": [
