@@ -2,9 +2,8 @@ name: Schedule source update
 
 on:
   schedule:
-    # GitHub cron has no random operator. This lightweight check selects one
-    # pseudorandom 15-minute slot on Friday each week.
-    - cron: "*/15 * * * 5"
+    # Discord publishes the iOS App Store build on Monday at about 18:10 UTC.
+    - cron: "10 18 * * 1"
   workflow_dispatch:
     inputs:
       force:
@@ -24,7 +23,7 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Select weekly slot
+      - name: Dispatch Monday update
         env:
           GH_TOKEN: ${{ github.token }}
           FORCE: ${{ inputs.force }}
@@ -35,21 +34,8 @@ jobs:
             exit 0
           fi
 
-          week=$(date -u +%G-%V)
-          seed=$(printf '%s' "$week" | sha256sum | cut -c1-16)
-          target_slot=$((16#${seed:0:8} % 96))
-          current_day=$(date -u +%u)
-          hour=$(date -u +%H)
-          minute=$(date -u +%M)
-          current_slot=$((10#$hour * 4 + 10#$minute / 15))
-
-          if [ "$FORCE" != "true" ] && [ "$current_day" -ne 5 ]; then
-            echo "Not Friday in UTC."
-            exit 0
-          fi
-
-          if [ "$FORCE" != "true" ] && [ "$current_slot" -lt "$target_slot" ]; then
-            echo "No dispatch for ISO week $week."
+          if [ "$FORCE" != "true" ] && [ "$(date -u +%u)" -ne 1 ]; then
+            echo "Discord ships on Monday."
             exit 0
           fi
 
@@ -66,4 +52,4 @@ jobs:
           fi
 
           gh workflow run update-source.yml --repo "$GITHUB_REPOSITORY" --ref main
-          echo "Dispatched the updater for ISO week $week."
+          echo "Dispatched the updater for $today."
