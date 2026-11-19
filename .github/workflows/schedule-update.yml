@@ -29,13 +29,8 @@ jobs:
           FORCE: ${{ inputs.force }}
         shell: bash
         run: |
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ "$FORCE" != "true" ]; then
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ] && [ "$FORCE" != "true" ]; then
             echo "Manual scheduler check complete. Use force=true to dispatch the updater."
-            exit 0
-          fi
-
-          if [ "$FORCE" != "true" ] && [ "$(date -u +%u)" -ne 1 ]; then
-            echo "Discord ships on Monday."
             exit 0
           fi
 
