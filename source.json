@@ -3,7 +3,7 @@
   "identifier": "com.arad00ak.discord-source",
   "subtitle": "Discord App Store builds for sideloading.",
   "description": "An unofficial source for decrypted Discord App Store builds. This project does not add tweaks or other modifications.",
-  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/65/9c/e0/659ce065-5dd8-eb35-378f-217d9658f6d9/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
   "website": "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
   "tintColor": "5865F2",
   "apps": [
@@ -13,10 +13,20 @@
       "developerName": "Discord Inc.",
       "subtitle": "The standard Discord app with no tweaks added.",
       "localizedDescription": "A decrypted Discord App Store build for sideloading. This source is unofficial and is not affiliated with Discord Inc.",
-      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/65/9c/e0/659ce065-5dd8-eb35-378f-217d9658f6d9/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
       "tintColor": "5865F2",
       "category": "social",
       "versions": [
+        {
+          "version": "354.0",
+          "buildVersion": "123054",
+          "date": "2026-11-16T19:01:42Z",
+          "localizedDescription": "We’ve been hard at work making Discord better for you. This includes bug fixes and performance enhancements. For more detailed information, go to your profile in the app and scroll down to “What’s New”.",
+          "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v354.0-b123054/Discord_354.0_123054.ipa",
+          "size": 108239733,
+          "sha256": "74a8f480220139bc50ffc28119fc5fe0889ddd930093762e0a2519e449905d63",
+          "minOSVersion": "16.0"
+        },
         {
           "version": "352.0",
           "buildVersion": "120481",
@@ -156,10 +166,10 @@
           "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
         }
       },
-      "version": "352.0",
-      "versionDate": "2026-11-02T18:10:45Z",
-      "size": 116329289,
-      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v352.0-b120481/Discord_352.0_120481.ipa",
+      "version": "354.0",
+      "versionDate": "2026-11-16T19:01:42Z",
+      "size": 108239733,
+      "downloadURL": "https://github.com/AlfaActa/discord-altstore-source/releases/download/discord-v354.0-b123054/Discord_354.0_123054.ipa",
       "minOSVersion": "16.0",
       "screenshots": {
         "iphone": [
